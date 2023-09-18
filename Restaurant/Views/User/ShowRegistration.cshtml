@@ -1,0 +1,48 @@
+﻿@{
+    ViewData["Title"] = "index";
+
+    Layout = "_Layout";
+
+
+}
+
+
+
+@section CssAndScript {
+    <link href="~/css/user.css" rel="stylesheet" />
+}
+<div class="boxPage">
+<div class="boxForm">
+    
+<form action="/User/CreateRegistration" method="post">
+        <div class="nameForm">Registration</div>
+        <div class="line"></div>
+
+
+    <div class="field">
+            <label class="labelUser">Email:</label>
+            <input name="email" class="inputUser" type="text" placeholder="Email">
+    </div>
+
+    <div class="field">
+            <label class="labelUser">Password:</label>
+            <input name="password" class="inputUser" type="text" placeholder="Password">
+    </div>
+    <div class="field">
+            <label class="labelUser">Repeat Password:</label>
+            <input name="password2" class="inputUser" type="text" placeholder="Repeat Password">
+    </div>
+
+
+    <button class="btnSubmit">
+        Register
+    </button>
+
+    <div class="line"></div>
+
+    <div class="linkBox">
+        Already Registered?<a class="linkTolink" asp-controller="user" asp-action="ShowLogin">Sign in</a>
+    </div>
+</form>
+</div>
+</div>

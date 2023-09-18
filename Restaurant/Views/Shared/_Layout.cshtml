@@ -1,0 +1,206 @@
+﻿@using Restaurant;
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <link href="~/css/layout.css" rel="stylesheet" />
+    <link href="~/css/basket.css" rel="stylesheet" />
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link href="~/jquery/jquery-ui.css" rel="stylesheet" />
+<script src="~/jquery/jquery.js"></script>
+<script src="~/jquery/jquery-ui.js"></script>
+  @RenderSection("CssAndScript", false)
+
+</head>
+<body>
+    <div class="boxSite">
+
+        <div class="container">
+            <div class="menu">
+                <div class="buttons">
+                    <button class="buttonBasketShow"><img class="buttonBasketShowImg" src="~/pictures/—Pngtree—shopping cart icon_5060874.png" /></button>
+                    <button class="addToOrder"><a asp-controller="Order" asp-action="Index">Go To Order</a></button>
+                </div>
+                <div class="basketStuff"></div>
+                @*   <div class="showTotal">
+                @Model.Total
+
+                </div>*@
+            </div>
+        </div>
+        <div class="header">
+            <div class="menu1"></div>
+            <div class="headLinks">
+                <div class="siteLink">
+                    <a asp-controller="Home" asp-action="Index">JustFood</a>
+                </div>
+                <div class="delivery">
+                    Delivery and pay
+                </div>
+                @if (User.IsInRole("admin"))
+                {
+                    <a class="adminSide" asp-controller="AdminProduct" asp-action="Index">Admin Side</a>
+                }
+                else
+                {
+                    <div></div>
+                }
+               
+                <div class="contact">
+                    Contacts
+                </div>
+                <div class="about">
+                    About
+                </div>
+                <div class="account">
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <a asp-controller="Account" asp-action="Index">Go Account</a>
+                    }
+                    else
+                    {
+                        <a asp-controller="User" asp-action="ShowLogin">Go Account</a>
+                    }
+
+                </div>
+
+            </div>
+
+            <div class="headMenu">
+
+                <div class="salads">
+                    <a asp-controller="Product" asp-action="Index" asp-route-category="s">Salads</a>
+                </div>
+                <div class="pizza">
+                    <a asp-controller="Product" asp-action="Index" asp-route-category="p">Pizza</a>
+                </div>
+                <div class="wok">
+                    <a asp-controller="Product" asp-action="Index" asp-route-category="w">WOK</a>
+                </div>
+                <div class="desserts">
+                    <a asp-controller="Product" asp-action="Index" asp-route-category="d">Desserts</a>
+                </div>
+                <div class="drinks">
+                    <a asp-controller="Product" asp-action="Index" asp-route-category="r">Drinks</a>
+                </div>
+            </div>
+            <div class="menu2"></div>
+        </div>
+
+        <div class="side1"></div>
+        <div class="main">
+            @RenderBody()
+        </div>
+        <div class="side2"></div>
+
+
+        <div class="footer">
+            <div class="col1">
+                <div class="itemFooterName">Catalogs</div>
+                <div class="footerMenu">
+                    <div class="categoryMeal">
+                        <a asp-controller="Product" asp-action="Index" asp-route-category="s">Salads</a>
+                    </div>
+                    <div class="categoryMeal">
+                        <a asp-controller="Product" asp-action="Index" asp-route-category="p">Pizza</a>
+                    </div>
+                    <div class="categoryMeal">
+                        <a asp-controller="Product" asp-action="Index" asp-route-category="w">WOK</a>
+                    </div>
+                    <div class="categoryMeal">
+                        <a asp-controller="Product" asp-action="Index" asp-route-category="d">Desserts</a>
+                    </div>
+                    <div class="categoryMeal">
+                        <a asp-controller="Product" asp-action="Index" asp-route-category="r">Drinks</a>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="col2">
+                <div class="itemFooterName">Company</div>
+                <div class="itemFooter">About</div>
+                <div class="itemFooter">Delivery and pay</div>
+                <div class="itemFooter">Bonuses</div>
+                <div class="itemFooter">Vacantion</div>
+            </div>
+            <div class="col3">
+                <div class="itemFooterName">Contacts</div>
+                <div class="itemFooter">Phones for Delivery:</div>
+                <div class="itemFooter">09988775543</div>
+                <div class="itemFooter">09888775543</div>
+                <div class="itemFooter">09388775543</div>
+                <div class="itemFooter">Phone for complaints:</div>
+                <div class="itemFooter">09388775635</div>
+            </div>
+            <div class="col4">
+                <div class="complaint">Complaint</div>
+                </div>
+        </div>
+
+    </div>
+
+
+
+
+
+<script>
+    $(document).ready(() => {
+        $.ajax({
+            type: "GET",
+            url: "/Basket/LoadBasket",
+            dataType: "html",
+            success: function (html) {
+                RenderBasket(html);
+            }
+        });
+    });
+   
+
+
+    $(document).ready(function () {
+        $(".buttonBasketShow").mouseenter(function () {
+            $(".container").toggleClass("open");
+        });
+    });
+
+
+        function DeleteBasketProduct(Id) {
+            $.ajax({
+                type: "POST",
+                url: "/Basket/DeleteBasketProduct",
+                data: { "id": Id },
+                dataType: "html",
+                success: function (result) {
+    
+                    RenderBasket(result);
+                }
+
+            });
+        }
+        //this your show html shared f
+        function RenderBasket(html){
+            $(".basketStuff").html(html); //so this no good?
+   
+         
+        }
+
+        function ChangeQuantity(Id,action){
+            $.ajax({
+                type: "POST",
+                url: "/Basket/ChangeQuantity",
+                data: { "id": Id, "action": action },
+                dataType: "html",
+                success: function (result) {
+                    RenderBasket(result);
+                }
+
+            });
+        }
+
+</script>
+</body>
+</html>

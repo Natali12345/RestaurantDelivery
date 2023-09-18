@@ -1,0 +1,147 @@
+﻿@using Restaurant;
+@model List<UserAddress>
+
+
+@{
+    ViewData["Title"] = "index";
+
+    Layout = "_Layout2";
+
+
+}
+
+
+
+@section CssAndScript {
+    <link href="~/css/indexaccount.css" rel="stylesheet" />
+}
+
+<div class="welcomeUserBox">
+<div class="welcome"> Welcome, @User.Identity.Name</div>
+<a class="logoutUser" asp-controller="User" asp-action="Logout"> Logout</a>
+</div>
+
+
+<div class="editDataBox">
+
+    @foreach (var address in Model)
+    {
+     
+        <div class="parentBox"><!--well l1 thing is you no make table this ok but why no work click? browser ignore td since you break table-->
+            <div class="idUser" style="display:none">@address.User.UserId</div>
+        </div>
+        <div class="parentBox">
+            <div class="email">@address.User.UserEmail</div>
+            <div class="change">
+                <input class="changeEmail" type="text" name="email" />
+                <button>Save</button>
+            </div>
+        </div>
+        <div class="parentBox">
+            <div class="street">@address.Street</div>
+            <div class="change">
+                <input class="changeStreet" type="text" name="street" />
+                <button>Save</button>
+            </div>
+        </div>
+        <div class="parentBox">
+            <div class="house">@address.House</div>
+            <div class="change">
+                <input class="changeHouse" type="text" name="house" />
+                <button>Save</button>
+            </div>
+        </div>
+        <div class="parentBox">
+            <div class="flat">@address.Flat</div>
+            <div class="change">
+                <input class="changeFlat" type="text" name="flat"  />
+                <button>Save</button>
+            </div>
+        </div>
+     
+    }
+
+
+    <form action="/Account/EditPassword" method="post">
+    <div class="field">
+        <label class="labelPassword">Write old password:</label>
+        <input name="oldPassword" class="inputUser" type="text" >
+    </div>
+    <div class="field">
+            <label class="labelPassword">Write new password:</label>
+        <input name="newPassword" class="inputUser" type="text" >
+    </div>
+    <div class="field">
+            <label class="labelPassword">Repeat new password:</label>
+            <input name="confirmPassword" class="inputUser" type="text">
+    </div>
+    <button type="submit">Submit</button>
+    </form>
+</div>
+
+<script type="text/javascript">
+   
+    function handleClickShorter(elementClass, changeType) {
+        $(elementClass).click((e) => {
+
+            let parent = $(e.target).parents(".parentBox");
+            $(".change", parent).css("display", "block");
+            $(elementClass, parent).css("display", "none");
+            $("input", parent).val($(elementClass, parent).text());
+
+            $("button", parent).click((e) => {
+                let parent = $(e.target).parents(".parentBox");
+
+                SaveChanges(e, changeType);
+                $(elementClass, parent).text($("input", parent).val());
+                $(".change", parent).css("display", "none");
+                $(elementClass, parent).css("display", "block");
+            });
+        });
+    }
+
+
+
+
+    function SaveChanges(e, className) {
+        let value = $("." + className, $(e.target).parent()).val();
+
+        let id = $(".idUser", $(e.target).parents(".editDataBox")).val();
+
+        let fd = new FormData;
+        fd.append("Name", className);
+        fd.append("Value", value);
+        fd.append("Id", id);
+
+        $.ajax({
+            type: "POST",
+            url: "/Account/SaveEdit",
+            data: fd,
+            contentType: false,
+            processData: false,
+
+            success: (result) => {
+
+                if (result != null) {
+                    alert(result);
+                }
+                else {
+                    console.log(result);
+                }
+
+
+            }
+
+        });
+    }
+
+    $(document).ready(()=>{
+
+
+    handleClickShorter(".email", "changeEmail");
+    handleClickShorter(".street", "changeStreet");
+    handleClickShorter(".house", "changeHouse");
+    handleClickShorter(".flat", "changeFlat");
+
+    });
+</script>

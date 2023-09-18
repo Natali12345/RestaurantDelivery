@@ -1,0 +1,34 @@
+﻿
+@using Restaurant;
+
+@model List<Restaurant.User>
+@{
+    ViewData["Title"] = "index";
+    Layout = "_Layout1";
+
+
+}
+@section CssAndScript {
+    <link href="~/css/showUsers.css" rel="stylesheet" />
+
+}
+
+ 
+<div class="tableContainer">
+
+    <div class="eachRow headerRow">
+        <div class="cell">User ID</div>
+        <div class="cell">User Email</div>
+    </div>
+
+    @foreach (var user in Model)
+    {
+        <div class="eachRow">
+            <div class="idUser cell">@user.UserId</div>
+            <div class="cell">@user.UserEmail</div>
+          
+        </div>
+    }
+
+</div>
+

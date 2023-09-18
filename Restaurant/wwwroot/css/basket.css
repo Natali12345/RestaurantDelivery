@@ -1,0 +1,104 @@
+﻿body {
+}
+
+
+.imageProduct {
+    object-fit: cover;
+    width: 90px;
+    height: 80px;
+   margin:5px 20px 5px 0 ;
+}
+.showBasketItems {
+    display:block;
+    height: 580px;
+    overflow: scroll;
+ 
+}
+
+    .showBasketItems::-webkit-scrollbar {
+        width: 0;
+        height: 0;
+    }
+html {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+body {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+}
+.totalPrice{
+    display:none;
+}
+
+.eachBasketItem{
+    display:flex;
+    
+}
+
+.idBasket {
+    display: none;
+}
+
+.nameProduct{
+    font-size:12px;
+  position:relative;
+  font-weight:bold;
+}
+
+.itemWithoutImg{
+ 
+}
+.boxQuantity {
+    display: flex;
+    right: 0px;
+    position: relative;
+    left: 90px;
+    bottom: 20px;
+}
+
+.chooseQuantity {
+ display:flex;
+ 
+
+ margin-right:5px;
+}
+
+.deleteBasketProduct {
+    width: 25px;
+    height: 25px;
+    border: none;
+    background-color: white;
+    cursor: pointer;
+}
+.delImg {
+   
+    height: 100%;
+    position: relative;
+    right: 10px;
+}
+.min {
+    width: 27px;
+    height: 27px;
+    border: none;
+    background-color: white;
+    border-radius: 20px;
+    cursor:pointer;
+}
+    .min:hover {
+        background-color: burlywood;
+    }
+.plus {
+    width: 27px;
+    height: 27px;
+    background-color: burlywood;
+    border:none;
+    border-radius:50%;
+    cursor:pointer;
+}
+    .plus:hover {
+        background-color: white;
+    }

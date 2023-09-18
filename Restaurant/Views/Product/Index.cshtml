@@ -1,0 +1,44 @@
+﻿@using Restaurant;
+@model List<Product>
+
+@{
+    ViewData["Title"] = "index";
+    Layout = "_Layout";
+
+
+}
+@section CssAndScript {
+    <link href="~/css/indexhome.css" rel="stylesheet" />
+
+}
+<div class="showProd">
+    @foreach (var product in Model)
+    {
+        <div class="eachRow">
+            <div><img class="image" src="/home/getImage?productId=@product.ProductId">@product.Images</div>
+            <div class="idProd">@product.ProductId</div>
+            <div class="name">@product.ProductName</div>
+            <div class="price">@product.Price $</div>
+            <div class="weight">@product.Weight g</div>
+            <button onclick="AddToBasket(@product.ProductId)" class="addToBasket">+</button>
+        </div>
+    }
+</div>
+
+
+<script>
+    function AddToBasket(Id) {
+        let quantity = 0;
+
+        $.ajax({
+            type: "POST",
+            url: "/Basket/AddToBasket",
+            data: { "id": Id, "quantity": quantity },
+            dataType: "json",
+            success: function (result) {
+                console.log(result);
+            }
+
+        });
+    }
+</script>

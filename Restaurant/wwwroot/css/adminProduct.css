@@ -1,0 +1,118 @@
+﻿body {
+}
+.adminProd {
+    width: 100%;
+    display:block;
+}
+
+.boxAddForm {
+    background-color: #e0e0e0;
+    margin-bottom: 200px;
+    display: flex;
+    justify-content: center;
+flex-wrap:wrap;
+}
+.addForm {
+
+    display: flex;
+    flex-wrap: wrap;
+    padding: 30px;
+}
+
+.inputProd {
+    
+    margin: 0 10px 10px 10px;
+}
+.inputs {
+    border: none;
+    height: 30px;
+    background-color: #f2f2f2;
+}
+
+.buttonAdd {
+    font-size: 16px;
+    margin: 0 0 40px 40px;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    background-color: #f2f2f2;
+}
+    .buttonAdd:hover {
+        background-color: #f7f5f7;
+    }
+
+#productNameInput {
+    width: 270px;
+}
+#priceInput {
+    width: 70px;
+}
+#ingridientsInput {
+    width: 380px;
+}
+#weightInput {
+    width: 70px;
+}
+#categoryInput {
+    width: 40px;
+}
+#availableInput {
+    width: 70px;
+}
+
+
+
+
+
+.tableContainer {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+ 
+    background-color: #fff;
+    box-shadow: 0px 0px 20px rgba(0,0,0,0.1);
+   
+}
+.eachRow {
+  
+}
+.showProd,
+.headerRow {
+  
+    width: 100%;
+}
+
+.headerRow {
+    font-weight: bold;
+    background-color: #f0f0f0;
+}
+
+.headerCell
+ {
+    display: table-cell;
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: center;
+}
+
+.image img, .deleteProduct button {
+    display: block;
+    margin: auto;
+}
+
+.deleteProduct:hover {
+    color: white;
+    background-color: black;
+    cursor: pointer;
+}
+.change,
+.boxChangeName,
+.boxChangePrice,
+.boxChangeWeight,
+.boxChangeCategory,
+.boxChangeIngridients {
+    display: none;
+}
+.image{
+    width:70px;
+}

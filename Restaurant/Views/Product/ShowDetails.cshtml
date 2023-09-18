@@ -1,0 +1,121 @@
+﻿@using Restaurant;
+@model List<Product>
+
+@{
+    ViewData["Title"] = "index";
+    Layout = "_Layout";
+
+
+}
+@section CssAndScript {
+    <link href="~/css/showDetails.css" rel="stylesheet" />
+
+}
+
+
+
+<div class="boxDetailsPage">
+@foreach (var product in Model)
+{
+        <div class="leftSide">
+            <a asp-controller="Home" asp-action="Index" class="leftComeBack"> <img src="~/pictures/left.png" /><div>Come Back</div></a>
+            <div><img class="image" src="/home/getImage?productId=@product.ProductId">@product.Images</div>
+            <div>
+                <div class="withThisTasty">With this more tasty</div>
+                <a class="showMoreDetails">
+                    <div class="showRandom">
+                        <div id="boxTable" class="boxTable"></div>
+                        <template id="productTemplate">
+                            <div id="replaceme">
+                                <div class="smallBox">
+                                    <div class="left">
+                                        <div class="idProdSmall">  </div>
+                                        <div><img class="imageSmall" src="/product/getImage?productId="></div>
+                                    </div>
+                                    <div class="right">
+                                        <div class="nameSmall"> </div>
+                                        <div class="priceSmall"> </div>
+                                        <button class="addToBasketSmall"> + </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </template>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="rightSide">
+            <div class="idProd">@product.ProductId</div>
+            <div class="name">@product.ProductName</div>
+            <div class="weightPriceButton">
+                <div class="weight">@product.Weight g</div>
+                <div class="priceButton">
+                <div class="price">@product.Price $</div>
+                <button onclick="AddToBasket(@product.ProductId)" class="addToBasket">Add To Basket</button>    
+                </div>
+            </div>
+            <div class="ingridients"><div class="ingridientsName">Ingridients</div> @product.Ingridients</div>
+            
+        
+        </div>
+
+   
+
+}
+</div>
+
+<script>
+   
+        $(document).ready(() => {
+            $.ajax({
+                type: "GET",
+            url: "/Product/ShowRandomProduct",
+                dataType: "json",
+                success: function (result) {
+                ShowItems(result);
+                }
+
+            });
+
+        });
+
+    function ShowItems(items) {
+        $("#boxTable").empty();
+
+        items.forEach((z) => {
+            var key = "row" + z.productId;
+            let html = document.getElementById("productTemplate").content.cloneNode(true);
+
+            html.querySelector("[class='idProdSmall']").innerText = z.productId;
+            html.querySelector("[class='nameSmall']").innerText = z.productName;
+            html.querySelector("[class='priceSmall']").innerText = z.price + "$";
+            html.querySelector("#replaceme").setAttribute("id", key);
+            let image = html.querySelector("[class='imageSmall']");
+            let src = image.src + z.productId;
+            image.setAttribute("src", src);
+
+            html.querySelector("[class='addToBasketSmall']").addEventListener("click", () => AddToBasket(z.productId));
+
+
+            $("#boxTable").append(html);
+
+        });
+    }
+
+
+
+    function AddToBasket(Id) {
+
+        let availablen = $(".availablen").val();
+        $.ajax({
+            type: "POST",
+            url: "/Basket/AddToBasket",
+            data: { "id": Id, "availablen": availablen },
+            dataType: "html",
+            success: function (html) {
+                RenderBasket(html);
+            }
+
+        });
+    }
+</script>

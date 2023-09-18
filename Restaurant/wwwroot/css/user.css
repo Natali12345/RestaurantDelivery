@@ -1,0 +1,131 @@
+﻿body {
+}
+*{
+    box-sizing:border-box;
+}
+/*.boxPage{
+    background-image:url(../pictures/ORFF0J0.jpg);
+    background-repeat:no-repeat;
+    background-size:cover;
+    margin-top:-40px;
+
+}*/
+
+.boxForm {
+    width: 350px;
+    height:450px;
+    background-color: #e0dcdc;
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+  margin-top:30px;
+    border-radius:8px;
+    margin-bottom:30px;
+}
+.nameForm {
+    font-size: 26px;
+    letter-spacing:-1px;
+    margin-left:110px;
+    margin-top:15px;
+}
+.line {
+    border-bottom: 3px solid white;
+    width: 300px;
+    margin-left: 25px;
+    margin-top:10px;
+    margin-bottom:10px;
+}
+.labelUser {
+    font-size: 15px;
+    margin-left: 25px;
+}
+
+.inputUser {
+    width: 300px;
+    margin-left: 25px;
+    border-radius: 3px;
+    height: 38px;
+    font-size: 25px;
+    letter-spacing: -1px;
+    background-color: #f5f2f2;
+    border: none;
+    border-bottom: 2px solid #c7c3c3;
+}
+    .inputUser:focus {
+       
+        outline: none;
+        border-bottom: 2px solid #ac79c7;
+    }
+    .inputUser::placeholder {
+        font-size: 14px;
+        letter-spacing: 1px;
+    }
+
+
+    .inputUser::-webkit-input-placeholder {
+        opacity: 1;
+        transition: opacity 0.3s ease;
+    }
+
+    .inputUser::-moz-placeholder {
+        opacity: 1;
+        transition: opacity 0.3s ease;
+    }
+
+    .inputUser:-moz-placeholder {
+        opacity: 1;
+        transition: opacity 0.3s ease;
+    }
+
+    .inputUser:-ms-input-placeholder {
+        opacity: 1;
+        transition: opacity 0.3s ease;
+    }
+
+    .inputUser:focus::-webkit-input-placeholder {
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+
+    .inputUser:focus::-moz-placeholder {
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+
+    .inputUser:focus:-moz-placeholder {
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+
+    .inputUser:focus:-ms-input-placeholder {
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+
+.btnSubmit {
+    width: 300px;
+    margin-left: 25px;
+    border-radius: 3px;
+    height: 38px;
+    font-size: 17px;
+    background-color: #f5f2f2;
+    margin-top: 15px;
+    color: black;
+    border:none;
+    cursor:pointer;
+    margin-bottom:10px;
+}
+    .btnSubmit:hover {
+        background-color: #c7c3c3;
+        color: white;
+    }
+
+   .linkBox{
+       margin-left:25px;
+   }
+.linkTolink {
+    color: #ac79c7;
+    outline:none;
+    text-decoration:none;
+    margin-left:3px;
+}

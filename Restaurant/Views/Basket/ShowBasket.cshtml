@@ -1,0 +1,44 @@
+﻿@using Restaurant;
+@using Restaurant.Models;
+@model BasketModel
+
+@*this is how a partial view looks, it is JUST the html you want to use, no layout 
+when we do return View we use return PartialView 
+
+
+*@
+
+ 
+<div class="showBasketItems">
+    
+    @foreach (var product in Model.basket)
+    {
+        <div class="eachBasketItem">
+            <div><img class="imageProduct" src="/home/getImage?productId=@product.ProductId"></div>
+            <div class="itemWithoutImg">
+                <div class="idBasket">@product.BasketId</div>
+                <div class="nameProduct">@product.Product.ProductName</div>
+
+                <div class="weightProduct">@product.Product.Weight g</div>
+                <div class="priceProduct">@product.Product.Price $</div>
+
+                <div class="totalPrice">@product.TotalPrice</div>
+                <div class="boxQuantity">
+                    <div class="chooseQuantity">
+                        <button class="min" value="min" onclick="ChangeQuantity(@product.BasketId,'min')">-</button>
+                    <div>@product.Quantity</div>
+                        <button class="plus" value="plus" onclick="ChangeQuantity(@product.BasketId, 'plus')">+</button>
+                    </div>
+                    <button class="deleteBasketProduct" onclick="DeleteBasketProduct(@product.BasketId)"><img class="delImg" src="~/pictures/basket.png" /></button>
+                </div>
+            </div>
+          
+        </div>
+       
+    }      
+   
+</div>
+<div class="showTotal">
+    @Model.Total
+
+</div>

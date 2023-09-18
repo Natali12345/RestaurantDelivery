@@ -1,0 +1,380 @@
+﻿body {
+  
+}
+*{
+    box-sizing:border-box;
+    margin:0px;
+}
+.boxSite {
+    display: grid;
+    grid-template-areas:
+        
+        "h h h b"
+        "s1 m s2 b"
+        "f f f b";
+    grid-template-rows: 140px auto 600px;
+    grid-template-columns: 1fr 8fr 1fr 100px;
+}
+.menu1{
+    grid-area:m1;
+}
+.menu2{
+    grid-area:m2;
+}
+.header {
+    grid-area: h;
+    display: grid;
+    grid-template-areas:
+        "m1 hl m2"
+        "m1 hm m2";
+    grid-template-rows: 90px 50px;
+    grid-template-columns: 1fr 8fr 1fr ;
+    background-color: white;
+    z-index: 5;
+    position: sticky;
+    top: 0;
+}
+
+
+
+
+.headLinks {
+    grid-area: hl;
+    display: grid;
+    grid-template-areas:
+        " link link1   empty link2 link3 link4";
+    grid-template-rows: 10px;
+    grid-template-columns: 120px 150px 1fr 80px 80px 100px;
+    font-size: 19px;
+    padding-top: 30px;
+  
+}
+
+
+.adminSide{
+    text-decoration:none;
+    display:flex;
+    justify-content:center;
+}
+
+.siteLink {
+    grid-area: link;
+    font-size: 24px;
+    text-decoration: none;
+    margin-left: 10px;
+}
+.siteLink a {
+   
+    font-weight:600;
+    text-decoration: none;
+}
+
+.delivery {
+    grid-area: link1;
+    font-weight: 600;
+    font-size: 17px;
+    padding-top: 6px;
+}
+
+.contact {
+    grid-area: link2;
+    font-weight: 600;
+    font-size: 17px;
+    padding-top: 6px;
+}
+
+.about {
+    grid-area: link3;
+    font-weight: 600;
+    font-size: 17px;
+    padding-top: 6px;
+}
+
+.account {
+    grid-area: link4;
+    font-weight: 600;
+    font-size: 18px;
+    padding-top:6px;
+}
+.account a{
+   text-decoration:none;
+   color:black;
+}
+
+
+
+.headMenu {
+    grid-area: hm;
+    background-color: #ac79c7;
+    display: grid;
+    grid-template-areas:
+        " s p w d dr";
+    grid-template-rows: 10px;
+    grid-template-columns: 60px 60px 60px 60px 60px;
+    font-size: 19px;
+    padding-top: 15px;
+    color: white;
+  
+
+}
+
+
+.salads {
+    grid-area: s;
+    margin-left:20px;
+}
+
+    .salads a {
+        outline: none;
+        text-decoration: none;
+        color: white;
+    }
+
+.pizza {
+    grid-area: p;
+    margin-left: 20px;
+}
+
+    .pizza a {
+        outline: none;
+        text-decoration: none;
+        color: white;
+    }
+
+.wok {
+    grid-area: w;
+    margin-left: 20px;
+}
+
+    .wok a {
+        outline: none;
+        text-decoration: none;
+        color: white;
+    }
+
+.desserts {
+    grid-area: d;
+    margin-left: 20px;
+}
+
+    .desserts a {
+        outline: none;
+        text-decoration: none;
+        color: white;
+    }
+
+}
+
+.drinks {
+    grid-area: dr;
+    margin-left: 20px;
+    margin-left: 20px;
+}
+
+    .drinks a {
+        outline: none;
+        text-decoration: none;
+        color: white;
+        margin-left: 45px;
+    }
+
+
+.side1 {
+    grid-area: s1;
+    background-color:white;
+}
+.side2 {
+    grid-area: s2;
+    background-color: white;
+}
+
+.main {
+    
+    grid-area: m;
+}
+
+.footer {
+    background-color: #ac79c7;
+    grid-area: f;
+    display: grid;
+    grid-template-areas:
+        "empty f t th fo";     
+    grid-template-rows: 600px;
+    grid-template-columns:100px 1fr 1fr 1fr 1fr;
+}
+
+.col1 {
+    grid-area: f;
+}
+.col2 {
+    grid-area: t;
+}
+.col3 {
+    grid-area: th;
+}
+.col4 {
+    grid-area: fo;
+}
+.itemFooter {
+    color: white;
+    font-size: 25px;
+    line-height: 35px;
+    cursor:pointer;
+}
+.itemFooter:hover{
+    color:yellow;
+}
+.itemFooterName {
+    font-size: 26px;
+    color: white;
+    font-weight: bold;
+    margin:100px 0 15px 0;
+
+}
+.categoryMeal {
+
+    line-height: 25px;
+}
+    .categoryMeal a {
+        font-size: 22px;
+        outline: none;
+        text-decoration: none;
+        color: white;
+        line-height: 35px;
+    }
+    .categoryMeal a:hover{
+        color:yellow;
+    }
+.complaint {
+    margin: 100px 0 15px 0;
+    background-color:white;
+    color:black;
+  font-size:19px;
+  width:120px;
+ padding:17px;
+ cursor:pointer;
+ border-radius:20px;
+
+}
+.complaint:hover {
+    background-color: #ac79c7;
+    color: white;
+}
+
+html {
+    box-sizing: border-box;
+    overflow-x: hidden;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
+}
+
+
+.container {
+    position:fixed;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    z-index: 6;
+    right: 0;
+}
+
+.buttonBasketShow {
+    position: absolute;
+    border: none;
+    background-color: transparent;
+
+    z-index: 6;
+    background-color:burlywood;
+    width:130px;
+    top:0;
+    left:0;
+    height:70px;
+    cursor:pointer;
+}
+.buttonBasketShowImg {
+ 
+    height:40px;
+    position:absolute;
+    z-index:7;
+    left:45px;
+    bottom:15px;
+}
+.addToOrder {
+    position: absolute;
+    border: none;
+    background-color: transparent;
+    z-index: 6;
+    background-color: #ac79c7;
+    width: 220px;
+    top: 0;
+    right: 0;
+    height: 70px;
+    cursor: pointer;
+    transition: background-color 1s;
+}
+    .addToOrder:hover {
+        background-color: burlywood;
+    }
+    .addToOrder a{
+        text-decoration:none;
+        color:white;
+    }
+.buttons {
+    display:flex;
+}
+
+.menu {
+    position: absolute;
+    right: -220px;
+    top: 0;
+    width: 350px;
+    background-color: white;
+    padding: 75px 20px 20px 20px;
+    transition: transform .5s;
+    height: 100vh;
+    z-index: 5;
+
+}
+
+.container.open .menu {
+    transform: translateX(-220px);
+}
+
+.showTotal {
+    background-color: burlywood;
+
+    width: 350px;
+    margin-left: -20px;
+    height: 70px;
+    font-size:22px;
+    padding:20px 0 0 40px;
+}
+
+
+
+
+
+/*@media screen and (width < 1200px){
+
+    .header{
+        display:none;
+    }
+
+    .menu {
+        display: none;
+    }
+    .boxSite{
+        display:block;
+    }
+
+}*/
+

@@ -1,0 +1,59 @@
+﻿@{
+    ViewData["Title"] = "index";
+
+    Layout = "_Layout";
+
+
+}
+
+@section CssAndScript {
+    <link href="~/css/order.css" rel="stylesheet" />
+}
+
+
+<div class="orderBox">
+    <div class="orderForm">
+        <form action="/Order/CreateOrder" method="post">
+            <div class="contactInfo">Contact info</div>
+         
+            <div class="boxNamePhone">
+         
+                <input name="name" id="inputName" class=" inputVal" type="text" placeholder="Name">
+            
+                <input name="phone" id="inputPhone" class="inputVal" type="text" placeholder="Phone">
+        
+            </div>
+            <div class="chooseAddress">Choose address delivery</div>
+            <button class="chooseAddressButton">Choose with saved address</button>
+
+            <div class="boxAddress">
+                <input name="street" id="inputStreet"  class="inputVal" type="text" placeholder="Street">
+
+                <input name="house" id="inputHouse" class="inputVal" type="text" placeholder="House">
+
+                <input name="flat" id="inputFlat" class="inputVal" type="text" placeholder="Flat">
+
+
+                    </div>
+            
+            <div class="choosePay">Choose pay method</div>
+            <div class="payItems">
+            <input type="radio"checked>
+            <label for="html">Cash</label><br>
+            <input type="radio" />
+            <label for="css">Card</label><br>
+            <input type="radio" >
+            <label for="javascript">Google Pay</label>
+            </div>
+            
+            <div class="comment">Comment</div>
+            <input name="description" id="inputComment" class="inputVal" type="text" placeholder="Comment"></input>
+
+            <div class="BoxbtnDel">
+            <button class="makeDeliveryBtn">Make Delivery</button>
+            </div>
+        </form>
+    </div>
+
+</div>
+

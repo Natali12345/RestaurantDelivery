@@ -1,0 +1,39 @@
+﻿body {
+  
+}
+
+.adminLinks {
+    display: grid;
+    grid-template-areas:
+        "  p  u o ";
+    grid-template-rows: 40px;
+    grid-template-columns: 1fr  1fr 1fr ;
+    justify-content: center;
+    margin: 10px 0 30px 0;
+}
+
+    .adminLinks a {
+        text-decoration: none;
+        color: white;
+        text-align: center;
+        background-color: #ccc;
+     
+        padding: 10px;
+        margin: 10px;
+        height: 40px;
+    }
+
+        .adminLinks a:hover {
+          
+        }
+
+
+        .adminLinks a:nth-child(1){
+            grid-area:p;
+        }
+        .adminLinks a:nth-child(2) {
+            grid-area: u;
+        }
+        .adminLinks a:nth-child(3) {
+            grid-area: o;
+        }

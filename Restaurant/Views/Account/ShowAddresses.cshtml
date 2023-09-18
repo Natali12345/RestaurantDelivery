@@ -1,0 +1,27 @@
+﻿@using Restaurant;
+@model List<UserAddress>
+
+@{
+    ViewData["Title"] = "index";
+    Layout = "_Layout2";
+
+
+}
+@section CssAndScript {
+    <link href="~/css/showAddresses.css" rel="stylesheet" />
+
+}
+<div class="showAddresses">
+    @foreach (var address in Model)
+    {
+        <div class="eachRow">
+
+            <div class="idAddress">@address.UserAdrdressId</div>
+            <div class="street">@address.Street</div>
+            <div class="house">@address.House</div>
+            <div class="flat">@address.Flat</div>
+        
+        </div>
+    }
+</div>
+

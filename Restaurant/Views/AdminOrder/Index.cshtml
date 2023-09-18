@@ -1,0 +1,96 @@
+﻿@using Restaurant;
+@using Restaurant.Models;
+@model ListOfOrderTotalModels;
+
+
+@{    
+    ViewData["Title"] = "index";
+    Layout = "_Layout1";
+}
+@section CssAndScript {
+    <link href="~/css/indexshoworders.css" rel="stylesheet" />
+
+
+}
+
+
+
+
+
+
+
+
+
+<div class="tableOrders">
+    <button class="tablinks" onclick="openOrder(event, 'Getorder')">Get</button>
+    <button class="tablinks" onclick="openOrder(event, 'Incooking')">Cook</button>
+    <button class="tablinks" onclick="openOrder(event, 'Delivery')">Delivery</button>
+    <button class="tablinks" onclick="openOrder(event, 'Done')">Done</button>
+</div>
+
+ 
+<div id="Getorder" class="tabcontent">
+  
+    <partial name="~/Views/Shared/_Order.cshtml" Model='Model.OrderFilterModel("Getorder")' />
+</div>
+
+<div id="Incooking" class="tabcontent">
+    <partial name="~/Views/Shared/_Order.cshtml" Model='Model.OrderFilterModel( "Incooking")' /> 
+
+</div>
+
+<div id="Delivery" class="tabcontent">
+    <partial name="~/Views/Shared/_Order.cshtml" Model='Model.OrderFilterModel( "Delivery")' />
+
+</div>
+
+<div id="Done" class="tabcontent">
+    <partial name="~/Views/Shared/_Order.cshtml" Model='Model.OrderFilterModel( "Done")' />
+ 
+</div>
+
+<script>
+    $(document).ready(function () {
+        $("#Getorder").show();
+        $(".eachRow").hover(function () {
+            $(this).css("background-color", "#edebed");
+        }, function () {
+            $(this).css("background-color", "#f1f1f1");
+        });
+
+        $(".orderId").click((e)=> {
+            $("#content" + e.currentTarget.id ).toggle();
+        });
+
+        
+    });
+    function ChangeStatus(Id, action) {
+
+        $.ajax({
+            url: "/AdminOrder/ChangeStatus",
+            type: "POST",
+            data: { "id": Id, "action": action },
+            success: function (result) {
+                console.log(result);
+            }
+        });
+    }
+    function openOrder(evt, orderTab) {
+        $(".tabcontent").hide();
+
+        $(".tablinks").removeClass("active");
+        $("#" + orderTab).show();
+        $(evt.currentTarget).addClass("active");
+    }
+
+
+
+
+
+
+
+
+
+
+
+</script>

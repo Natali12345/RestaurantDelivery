@@ -1,0 +1,80 @@
+﻿@using Restaurant;
+@using Restaurant.Models;
+@model List<OrderTotalModel>;
+
+@{
+    ViewData["Title"] = "index";
+    Layout = "_Layout2";
+
+
+}
+@section CssAndScript {
+
+    <link href="~/css/showorders.css" rel="stylesheet" />
+}
+
+
+
+<div class="tableContainer">
+    <div class="eachRow headerRow">
+        <div class="cell">Order ID</div>
+        <div class="cell">Name</div>
+        <div class="cell">Phone</div>
+        <div class="cell">Order Item Id</div>
+        <div class="cell">Product Name</div>
+        <div class="cell">Quantity</div>
+        <div class="cell"> Price Per Item</div>
+        <div class="cell"> Total Price</div>
+    </div>
+
+    @foreach (var item in Model)
+    {
+
+
+        <div class="eachRow">
+            <div class="cell">@item.Order.OrderId</div>
+            <div class="cell">@item.Order.Name</div>
+            <div class="cell">@item.Order.Phone</div>
+            <div class="orderItemsContainer">
+                @foreach (var orderItem in @item.Order.OrderItems)
+                {
+                    <div class="eachOrderItem">
+                        <div class="cell">@orderItem.OrderItemId</div>
+                        <div class="cell">@orderItem.Product.ProductName</div>
+                        <div class="cell">@orderItem.Quantity</div>
+                        <div class="cell">@orderItem.TotalPrice</div>
+                    </div>
+                }
+            </div>
+            <div class="cell">@item.Total</div>
+
+
+
+        </div>
+
+        <div class="cell status @GetCSSForStatus(item.Order.Status)"> 
+     
+            @item.Order.Status
+        </div>
+    }
+
+
+</div>
+
+@{
+    string GetCSSForStatus(string status)
+    {
+        switch (status)
+        {
+            case "Get order":
+                return "statusOrder";
+
+            case "In cooking":
+                return "statusCook";
+            case "Delivery":
+                return "statusDelivery";
+            default:
+                return "statusDone";
+        }
+    }
+}

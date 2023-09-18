@@ -1,0 +1,39 @@
+﻿@{
+    ViewData["Title"] = "index";
+
+    Layout = "_Layout";
+
+
+}
+
+
+
+@section CssAndScript {
+    <link href="~/css/user.css" rel="stylesheet" />
+}
+
+<div class="boxForm">
+    <form action="/User/GoToAccount" method="post">
+        <div class="nameForm">Log In</div>
+        <div class="line"></div>
+
+        <div class="field">
+            <label class="labelUser">Email:</label>
+            <input name="email" class="inputUser" type="text">
+        </div>
+
+        <div class="field">
+            <label class="labelUser">Password:</label>
+            <input name="password" class="inputUser" type="text">
+        </div>
+
+
+        <button class="btnSubmit">
+            Sign in
+        </button>
+        <div class="line"></div>
+        <div class="linkBox">
+            Don't have an account?<a class="linkTolink" asp-controller="user" asp-action="ShowRegistration">Registration</a>
+        </div>
+    </form>
+</div>

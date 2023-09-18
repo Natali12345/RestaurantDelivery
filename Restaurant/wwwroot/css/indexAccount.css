@@ -1,0 +1,26 @@
+﻿body {
+}
+.welcome{
+   
+}
+
+.welcomeUserBox{
+    display:flex;
+    margin-top:5px;
+}
+
+.logoutUser{
+
+    margin-left:5px;
+    font-size:20px;
+    outline:none;
+    text-decoration:none;
+}
+
+.editDataBox {
+    background-color: #ededed;
+}
+
+.change {
+    display: none;
+}

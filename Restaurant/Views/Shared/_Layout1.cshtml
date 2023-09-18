@@ -1,0 +1,21 @@
+﻿@{
+
+    Layout = "_Layout";
+
+    }
+@section CssAndScript {
+    @RenderSection("CssAndScript", false)
+
+}
+<link href="~/css/layout1.css" rel="stylesheet" />
+
+
+    <div class="adminLinks">
+        <a asp-controller="AdminProduct" asp-action="Index">GoToProduct</a>
+        <a asp-controller="AdminUser" asp-action="Index">GoToUser</a>
+        <a asp-controller="AdminOrder" asp-action="Index">GoToOrder</a>
+    </div>
+    <div>
+        @RenderBody()
+    </div>
+ 

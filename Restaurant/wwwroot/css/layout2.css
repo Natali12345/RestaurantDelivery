@@ -1,0 +1,27 @@
+﻿body {
+}
+.leftMenu {
+    margin-bottom: 300px;
+}
+
+.menuItem {
+    background-color: #e0dcdc;
+    width:200px;
+    margin-top:6px;
+    cursor:pointer;
+    font-size:20px;
+    padding:8px;
+}
+    .menuItem a {
+        outline: none;
+        text-decoration: none;
+        color: black;
+    }
+        .menuItem:hover {
+            background-color: #c7c3c3
+        }
+
+.box {
+    display: flex;
+
+     }

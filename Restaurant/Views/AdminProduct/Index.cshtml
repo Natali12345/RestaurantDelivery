@@ -1,0 +1,270 @@
+﻿@{
+    ViewData["Title"] = "index";
+
+    Layout = "_Layout1";
+
+
+}
+
+
+
+@section CssAndScript {
+    <link href="~/css/adminproduct.css" rel="stylesheet" />
+}
+
+
+<div id="adminProd" class="adminProd">
+    <div class="boxAddForm">
+        <div class="addForm" id="addForm">
+            <div class="inputProd"> <div>Name</div><input class="inputs" type="text" id="productNameInput" name="productName" /></div>
+            <div class="inputProd"><div> Price</div> <input class="inputs" type="text" id="priceInput" name="price" /></div>
+            <div class="inputProd"><div>Weight </div> <input class="inputs" type="text" id="weightInput" name="weight" /></div>
+            <div class="inputProd"><div>Ingridients</div> <input class="inputs" type="text" id="ingridientsInput" name="ingridients" /></div>
+            <div class="inputProd"> <div> Category</div> <input class="inputs" type="text" id="categoryInput" name="category" /></div>
+            <div class="inputProd"><div>Available</div> <input class="inputs" type="text" id="availableInput" name="available" /></div>
+            <div class="inputProd"><div>Image</div> <input class="inputs" type="file" id="imageInput" name="image" /></div>
+        </div>
+        <button class="buttonAdd" onclick="AddNewProduct()" type="submit">Add New Product</button>
+    </div>
+
+</div>
+
+<div class="tableContainer">
+
+    <table>
+        <thead>
+            <tr>
+                <th class="cell headerCell">Image</th>
+                <th class="cell headerCell">ID</th>
+                <th class="cell headerCell">Name</th>
+                <th class="cell headerCell">Price</th>
+                <th class="cell headerCell">Ingredients</th>
+                <th class="cell headerCell">Weight</th>
+                <th class="cell headerCell">Category</th>
+                <th class="cell headerCell">Available</th>
+                <th class="cell headerCell">Delete</th>
+            </tr>
+        </thead>
+        <tbody id="showProd" class="showProd"></tbody>
+    </table>
+
+
+
+    <template id="productTemplate">
+
+        <tr class="eachRow">
+
+         
+            <input type="hidden" class="idProd" name="productId" />
+            <td>
+                <div class="imgBox"> <img class="image" src="/product/getImage?productId="></div>
+            </td>
+            <td>
+                <div class="id">  </div>
+            </td>
+            <td>
+         
+                <div class="name"></div>
+                <div class="change">
+                    <input class="changeName" type="text" name="productName" id="inputChangeName" />
+                    <button>Save</button>
+                </div>
+            </td>
+            <td>
+                <div class="price">$</div>
+                <div class="change">
+                    <input class="changePrice" type="text" name="price" id="inputChangePrice" />
+                    <button>Save</button>
+                </div>
+            </td>
+            <td>
+                <div class="ingridients"></div>
+                <div class="change">
+                    <input class="changeIngridients" type="text" name="ingridients" id="inputChangeIngridients" />
+                    <button>Save</button>
+                </div>
+            </td>
+            <td>
+                <div class="weight">g</div>
+                <div class="change">
+                    <input class="changeWeight" type="text" name="weight" id="inputChangeWeight" />
+                    <button>Save</button>
+                </div>
+            </td>
+            <td>
+                <div class="category"></div>
+                <div class="change">
+                    <input class="changeCategory" type="text" name="category" id="inputChangeCategory" />
+                    <button>Save</button>
+                </div>
+            </td>
+            <td>
+                <div class="available"></div>
+                <div class="change">
+                    <input class="changeAvailable" type="text" name="available" id="inputChangeAvailable" />
+                    <button>Save</button>
+                </div>
+            </td>
+            <td>
+                <div class="deleteBox"> <button class='deleteProduct'>delete</button></div>
+            </td>
+
+        </tr>
+    </template>
+
+</div>
+
+<script>
+    $(document).ready(() => {
+        $.ajax({
+            type: "GET",
+            url: "/AdminProduct/Load",
+            dataType: "json",
+            success: function (result) {
+                ShowProducts(result);
+            }
+
+        });
+
+       
+
+    });
+
+
+
+
+    function AddNewProduct() {
+
+        let productName = $("#productName").val();
+        let price = $("#price").val();
+        let ingridients = $("#ingridients").val();
+        let weight = $("#weight").val();
+        let image = $("#image")[0].files[0];
+        let category = $("#category").val();
+        let available = $("#available").val();
+
+        let fd = new FormData;
+        fd.append("productName", productName);
+        fd.append("price", price);
+        fd.append("ingridients", ingridients);
+        fd.append("weight", weight);
+        fd.append("image", image);
+        fd.append("category", category);
+        fd.append("available", available);
+
+
+        $.ajax({
+            type: "POST",
+            url: "/AdminProduct/Index",
+            data: fd,
+            contentType: false,
+            processData: false,
+            success: function (result) {
+                console.log(result);
+            }
+        });
+    }
+
+    function ShowProducts(items){
+        $("#showProd .eachRow").remove();
+        items.forEach((z) => {
+            let key = "row" + z.productId
+            let html = document.getElementById("productTemplate").content.cloneNode(true);
+            html.querySelector("[class='id']").innerText = z.productId;
+            html.querySelector("[class='idProd']").value = z.productId;
+            html.querySelector("[class='name']").innerText = z.productName;
+            html.querySelector("[class='price']").innerText = z.price + "$";
+            html.querySelector("[class='ingridients']").innerText = z.ingridients;
+            html.querySelector("[class='weight']").innerText = z.weight + "g";
+            html.querySelector("[class='category']").innerText = "Category:" +  z.category;
+            html.querySelector("[class='available']").innerText = "Available:" + z.available;
+            html.children[0].setAttribute("id", key);
+            let image = html.querySelector("[class='image']");
+            let src = image.src + z.productId;
+            image.setAttribute("src", src);
+            html.querySelector("[class='deleteProduct']").addEventListener("click", () => DeleteProduct(z.productId));
+            $("#showProd").append(html);
+        })
+
+
+        function handleClickShorter(elementClass, changeType) {
+            $(elementClass).click((e) => {
+
+                let parent = $(e.target).parents("td");
+                $(".change", parent).css("display", "block");
+                $(elementClass, parent).css("display", "none");
+                $("input", parent).val($(elementClass, parent).text());
+
+                $("button", parent).click((e) => {
+                    let parent = $(e.target).parents("td");
+
+                    SaveChanges(e, changeType);
+                    $(elementClass,parent).text($("input",parent).val());
+                    $(".change", parent).css("display", "none");
+                    $(elementClass,parent).css("display", "block");
+                });
+            });
+        }
+
+    
+        handleClickShorter(".name",  "changeName");
+
+        handleClickShorter(".price",  "changePrice");
+
+        handleClickShorter(".weight",  "changeWeight");
+        handleClickShorter(".category",   "changeCategory");
+
+        handleClickShorter(".availablen",   "changeAvailablen");
+        handleClickShorter(".ingridients",  "changeIngridients");
+
+
+
+    }
+
+    function DeleteProduct(Id){
+        $.ajax({
+            type:"POST",
+            url:"/AdminProduct/DeleteProduct",
+            data:{"id" : Id}, 
+            dataType:"json",
+            success:function(result){
+                $("#row" + Id).remove();
+            }
+
+        });
+    }
+    function SaveChanges(e, className){
+
+        let value = $("." + className, $(e.target).parent()).val();
+
+        let id = $(".idProd", $(e.target).parents(".eachRow")).val();
+
+        let fd = new FormData;
+        fd.append("Name", className);
+        fd.append("Value", value);
+        fd.append("Id", id);
+
+        $.ajax({
+            type: "POST",
+            url: "/AdminProduct/SaveChanges",
+            data: fd,
+            contentType: false,
+            processData: false,
+          
+            success:   (result) => {
+             
+               if(result != null){
+                   alert(result);
+               }
+               else{
+                    console.log(result);
+               }
+               
+
+                }
+
+        });
+    }
+
+
+</script>

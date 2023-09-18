@@ -1,0 +1,18 @@
+﻿@{
+    ViewData["Title"] = "index";
+
+    Layout = "_Layout2";
+
+
+}
+
+
+
+@section CssAndScript {
+   
+}
+
+<div> Welcome, @User.Identity.Name</div>
+<div>Access Error</div>
+
+<a asp-controller="User" asp-action="Logout">Logout</a>

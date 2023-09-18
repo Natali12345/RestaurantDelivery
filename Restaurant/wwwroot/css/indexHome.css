@@ -1,0 +1,76 @@
+﻿body {
+}
+
+.addToBasket {
+    color: black;
+    font-size: 25px;
+    border-radius: 30px;
+position:relative;
+float:right;
+    width: 30px;
+    border: none;
+    background-color: yellow;
+}
+
+
+    .addToBasket:hover {
+        color: white;
+        background-color: #ac79c7;
+        cursor: pointer;
+    }
+
+  
+.showProd {
+ 
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+    gap: 20px;
+    padding: 20px;
+}
+
+.eachRow {
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 20px;
+    display: block;
+}
+
+.image {
+
+    width: 100%;
+    height: auto;
+}
+
+.idProd {
+    color: white;
+    display:none;
+}
+
+.name {
+    font-size:20px;
+max-width:400px;
+color:black;
+}
+
+
+.price {
+    color: black;
+    font-size: 22px;
+}
+
+.weight {
+    color: black;
+    left: 500px;
+}
+.availablen {
+ 
+}
+
+.clickShowDet{
+    outline:none;
+    text-decoration:none;
+}
+@media screen and (width < 1200px) {
+
+}
+
