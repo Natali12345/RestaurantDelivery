@@ -72,7 +72,7 @@ namespace Restaurant.Controllers
         public async Task<IActionResult> LoadBasket()
         {
             var model = await _basketHelper.LoadBasket(User.Identity.Name);
-            return PartialView("ShowBasket", model); 
+            return PartialView("ShowBasket", model  ); 
         }
 
 
