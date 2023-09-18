@@ -34,8 +34,6 @@ namespace Restaurant.Controllers
 
 
 
-            //for items, you want to read the basket of the user from helper. not items from order model
-            //yo same as other means User.Identity.Name
 
             var userName = User.Identity.Name;
             var user = await _context.users.FirstOrDefaultAsync(z => z.UserEmail == userName);
@@ -124,11 +122,7 @@ namespace Restaurant.Controllers
                     bonus = 1;
                 }
 
-                //var userBonus = new User()
-                //{
-                //    Bonuses = bonus
-                //};
-                //_context.users.Add(userBonus);
+          
                 if (user.Bonuses is null)
                     user.Bonuses = bonus;
                 else

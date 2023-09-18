@@ -14,7 +14,7 @@ namespace Restaurant.Controllers
     {
 
         private readonly RestaurantContext _context;
-        private readonly IConfiguration _configuration; //so you see how i used _, this for easy understand this is a field in a class
+        private readonly IConfiguration _configuration; 
         public UserController(RestaurantContext c, IConfiguration config)
         {
 
@@ -56,13 +56,13 @@ namespace Restaurant.Controllers
                         prf: KeyDerivationPrf.HMACSHA256,
                         iterationCount: 100000,
                         numBytesRequested: 256 / 8));
-                    hashed += "~";//why need add?
+                    hashed += "~";
                     hashed += Convert.ToBase64String(salt);
 
                     _context.users.Add(new User()
                     {
                         UserEmail = model.email,
-                        UserPassword = hashed // you  were using model.password here thank you) you earn me)
+                        UserPassword = hashed
                     });
                     _context.SaveChanges();
                     return RedirectToAction("ShowLogin");
@@ -93,7 +93,7 @@ namespace Restaurant.Controllers
 
             }
 
-            string[] records = user.UserPassword.Split('~'); //we did ~ now we cut parts
+            string[] records = user.UserPassword.Split('~'); 
             byte[] salt = Convert.FromBase64String(records[1]);
             string passwordHash = records[0];
 

@@ -72,7 +72,7 @@ namespace Restaurant.Controllers
         public async Task<IActionResult> LoadBasket()
         {
             var model = await _basketHelper.LoadBasket(User.Identity.Name);
-            return PartialView("ShowBasket", model); //make sure youhave view 
+            return PartialView("ShowBasket", model); 
         }
 
 
@@ -81,14 +81,14 @@ namespace Restaurant.Controllers
         public async Task<IActionResult> DeleteBasketProduct(int id)
         {
 
-            //var productId = await _context.products.Map(z => z.ProductId == id).ToListAsync();
+            
             var basket = await _context.baskets.Include("Product").FirstOrDefaultAsync(z => z.BasketId == id);
        
             if (basket != null)
             {
 
 
-                basket.Product.Availablen++; //this might work if you include product in query, otherwise need load product like in add
+                basket.Product.Availablen++; 
                 _context.baskets.Remove(basket);
 
             }

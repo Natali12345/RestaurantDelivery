@@ -14,7 +14,7 @@ namespace Restaurant.Controllers
         
 
         [HttpGet]
-        public async Task<IActionResult> Index() hmm
+        public async Task<IActionResult> Index() 
         {
             return View();
         }
@@ -135,10 +135,7 @@ namespace Restaurant.Controllers
             }
             await _context.SaveChangesAsync();
 
-            return Json(stringError); //i really dont know what put here ,, this better so far, but i would make logic that 
-            //tell false if something no good, and a string saying what no good
-            //so if dadsa insterad of decimal can have striung from else that tell use number idiot 
-            //oh understand, ya , now in your ajax success stuff you can check this
+            return Json(stringError); 
 
         }
 

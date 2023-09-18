@@ -76,7 +76,7 @@ namespace Restaurant.Controllers
                 numBytesRequested: 256 / 8));
             if (hashed == records[0])
             {
-                // Если старый пароль верный, вычисляем новый хэш для нового пароля
+          
                 string newHashed = Convert.ToBase64String(KeyDerivation.Pbkdf2(
                     password: model.NewPassword,
                     salt: salt,
@@ -84,14 +84,14 @@ namespace Restaurant.Controllers
                     iterationCount: 100000,
                     numBytesRequested: 256 / 8));
 
-                // Обновляем хэш пароля в базе данных
+            
                 userPas.UserPassword = newHashed + "~" + Convert.ToBase64String(salt);
-                // _context.users.Update(userPas);
+   
                 await _context.SaveChangesAsync();
             }
             else
             {
-                // Если старый пароль неверный, добавляем сообщение об ошибке
+           
                 ModelState.AddModelError(string.Empty, "old password wrong");
             }
 
