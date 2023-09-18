@@ -8,13 +8,13 @@ namespace Restaurant.Controllers
     [Authorize(Roles ="admin")] 
     public class AdminProductController : ProductBaseController
     {
-        public AdminProductController(RestaurantContext c) : base(c)
+        public AdminProductController(RestaurantContext c) : base(c) 
         {
         }
         
 
         [HttpGet]
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index() hmm
         {
             return View();
         }
